@@ -6,30 +6,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><spring:message code="login.title"/></title>
+<link rel="stylesheet" href="../../../resources/CSS/loginCSS.css">
+<title>로그인</title>
 </head>
 <body>
-	<form:form commandName="loginCommand">
-		<form:errors /><!--  글로벌 에러코드가 작성되는 부분 -->
-		<p>
-			<label> <spring:message code="email"/> : <br>
-				<form:input path="email"/>
-				<form:errors path="email"/>
-			</label>
-		</p>
-		<p>
-			<label> <spring:message code="password"/> : <br>
-				<form:password path="password"/>
-				<form:errors path="password" htmlEscape="false"/>
-			</label>
-		</p>
-		<p>
-			<label>
-				<spring:message code="rememberEmail"/> : 
-					<form:checkbox path="rememberEmail"/>
-			</label>
-		</p>
-		<input type="submit" value="<spring:message code="login.btn"/>">
-	</form:form>
+<header><h1 class="main">그린 아카데미</h1></header>
+<section> 
+	<form action="" method="POST">
+	<table>
+		<tr>
+			<th>아이디</th>
+				<td><input type="text" id="memberId" name="memberId"></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+				<td><input type="password" id="memberPassword" name="memberPassword"></td>
+		</tr>
+	</table>
+	<input type="submit" value="로그인" class=btn>
+	<input type="button" value="회원가입" class=btn onclick="location.href='/member/join '">
+	</form>	
+</section>
+<footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
+
 </body>
 </html>

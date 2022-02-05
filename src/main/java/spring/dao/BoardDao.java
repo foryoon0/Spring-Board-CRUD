@@ -48,7 +48,28 @@ public class BoardDao {
 			System.out.println("리스트최종");
 			return list;
 		
-		}
+	}
+	
+	////////////////////////////////////////////////////
+	// BoardNum 통해서 게시물 내용 읽어오기 selectByqnaBoardNum
+	public Board selectByqnaBoardNum(int qnaBoardNum) { 
+		
+		List<Board> list= jdbcTemplate.query("SELECT b.*,m.* FROM boards b left outer join members m on b.memberNum = m.memberNum WHERE qnaBoardNum=?", new RowMapper<Board>() {
+			
+			@Override
+				public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Board board = new Board(
+					rs.getString("qnaBoardTitle"),
+					rs.getTimestamp("qnaBoardRegdate"),
+					rs.getString("memberName"),
+					rs.getInt("qnaBoardCount"),
+					rs.getString("qnaBoardContent"));
+			board.setQnaBoardNum(rs.getInt("qnaBoardNum"));
+		return board;
+			}} ,qnaBoardNum);
+		return list.isEmpty()?null:list.get(0);
+	
+	}
 }
 	
 	

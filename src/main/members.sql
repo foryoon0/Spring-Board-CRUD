@@ -102,8 +102,10 @@ VALUES(comments_seq.NEXTVAL,104,'web.xml을 이용합니다.','2020-11-17');
 INSERT INTO comments
 VALUES(comments_seq.NEXTVAL,103,'스프링 설정을 보다 간소화 한 것이 스프링 부트입니다.','2020-11-17');
 
+
 DROP TABLE boards;
 DROP TABLE members;
 DROP TABLE comments;
 DROP SEQUENCE comments_seq;
 DROP SEQUENCE boards_seq;
+DROP SEQUENCE members_seq;

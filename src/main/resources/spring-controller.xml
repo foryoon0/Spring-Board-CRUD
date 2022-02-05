@@ -10,5 +10,14 @@
 	<bean id="registerController" class="spring.controller.RegisterController" >
 		<property name="memberRegisterService" ref="regSvc"/>
 	</bean>
+	
+	<bean id="loginController" class="spring.controller.LoginController" >
+		<property name="authService" ref="authService"/>
+	</bean>
+
+	<bean id="readController" class="spring.controller.ReadController" >
+		<property name="dao" ref="dao" />
+	</bean>
+
 
 </beans>

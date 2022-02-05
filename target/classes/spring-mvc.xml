@@ -15,6 +15,7 @@
 	</mvc:view-resolvers>
 
 	
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">

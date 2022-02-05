@@ -19,7 +19,9 @@ private JdbcTemplate jdbcTemplate;
 	public MemberDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
+	
+	
+	//이메일 선택
 	public Member selectByEmail(String email) {
 
 		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberEmail=?", new RowMapper<Member>() {
@@ -30,12 +32,17 @@ private JdbcTemplate jdbcTemplate;
 								rs.getString("memberEmail"),
 								rs.getString("memberPassword"),
 								rs.getString("memberName"));
+		
+	
 					return member;
 			}} ,email);
 
 		return list.isEmpty()?null:list.get(0);
 	}
-
+	
+	
+	//////////////////////////////////////////// 
+	//회원가입 기능
 	public void insert(Member newMember) {
 			
 			int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
@@ -46,8 +53,8 @@ private JdbcTemplate jdbcTemplate;
 								"INSERT INTO members VALUES(members_seq.nextval,?,?,?,?,?)");
 					
 						psmt.setString(1,newMember.getMemberId());
-						psmt.setString(2,newMember.getMemberName());
-						psmt.setString(3,newMember.getMemberPassword());
+						psmt.setString(2,newMember.getMemberPassword());
+						psmt.setString(3,newMember.getMemberName());
 						psmt.setString(4,newMember.getMemberEmail());
 						psmt.setString(5,newMember.getMemberPhone());
 					
@@ -56,5 +63,26 @@ private JdbcTemplate jdbcTemplate;
 			});
 			System.out.println("INSERT로 삽입된 데이터의 개수 : "+cnt);
 		}
+	
+	
+		////////////////////////////////////////////
+		//로그인 기능
+		public Member selectById(String memberId) {
+		
+		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memeberId=?", new RowMapper<Member>() {
+
+							@Override
+							public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+										Member member = new Member(
+												rs.getString("memberPassword"),
+												rs.getString("memberName"),
+												rs.getString("memberEmail"),
+												rs.getString("memberPhone "));
+										member.setMemberId(rs.getString("memberId"));
+									return member;
+							}} ,memberId);
+		
+		return list.isEmpty()?null:list.get(0);
+	}
 		
 	}

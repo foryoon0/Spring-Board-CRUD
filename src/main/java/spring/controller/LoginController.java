@@ -10,12 +10,16 @@ import spring.vo.LoginCommand;
 
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 	
 	private AuthService authService;
 	
-
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
+	
+	@RequestMapping(value="/loginForm",method=RequestMethod.GET)
 	public String form(Model model) {  
 		
 		model.addAttribute("loginCommand",new LoginCommand());
@@ -26,3 +30,4 @@ public class LoginController {
 
 	
 }
+

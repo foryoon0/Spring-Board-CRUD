@@ -10,17 +10,17 @@ public class AuthService {
 	
 	private MemberDao memberDao;
 
-	public AuthService(MemberDao MemberDao) {
+	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
 	
-	public AuthInfo authenticate(String email, String password) {
-		Member member = memberDao.selectByEmail(email);
+	public AuthInfo authenticate(String memberId, String memberPassword) {
+		Member member = memberDao.selectById(memberId);
 		
 		if(member==null) {
 			throw new IdPasswordNotMatchingException();
 		}
-		if(!member.getMemberPassword().equals(password)) {
+		if(!member.getMemberPassword().equals(memberPassword)) {
 			throw new IdPasswordNotMatchingException();
 		}
 		

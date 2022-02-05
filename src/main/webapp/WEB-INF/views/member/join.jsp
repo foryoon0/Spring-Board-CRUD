@@ -6,41 +6,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="../../../resources/CSS/joinCSS.css">
+<title>회원 가입</title>
 </head>
 <body>
-<form action="registComp" method="POST">
-	<p>
-		<label>이메일:<br>
-			<input type="email" name="useremail" id="useremail">
-		</label>
-	</p>
-	<p>
-		<label>아이디:<br>
-			<input type="text" name="userid" id="userid" value="${formData.name}">
-		</label>
-	</p>
-	<p>
-		<label>이름:<br>
-			<input type="text" name="username" id="username">
-		</label>
-	</p>
-	<p>
-		<label>비밀번호:<br>
-			<input type="password" name="userpassword" id="userpassword">
-		</label>
-	</p>
-	<p>
-		<label>비밀번호 확인:<br>
-			<input type="password" name="userconfirmPassword" id="userconfirmPassword">
-		</label>
-	</p>
-	<p>
-		<label>전화번호:<br>
-			<input type="tel" name="userphone" id="userphone">
-		</label>
-	</p>
+<header><h1 class="main">그린 아카데미</h1></header>
+<section>
+<form action="joining" method="POST">
+	<table>
+	<tr>
+		<th>이메일</th>
+			<td><input type="email" name="memberEmail" id="memberEmail" required></td>
+	</tr>
+	<tr>
+		<th>아이디</th>
+			<td><input type="text" name="memberId" id="memberId" value="${formData.name}" required></td>
+	</tr>
+	<tr>
+		<th>이름</th>
+			<td><input type="text" name="memberName" id="memberName" required></td>
+	</tr>
+	<tr>
+		<th>비밀번호</th>
+			<td><input type="password" name="memberPassword" id="memberPassword" required></td>
+	</tr>
+	<tr>
+		<th>비밀번호 확인</th>
+			<td><input type="password" name="rePassword" id="rePassword" required></td>
+	</tr>
+	<tr>
+		<th>전화번호</th>
+			<td><input type="tel" name="memberPhone" id="memberPhone" required></td>
+	</tr>
+	<tr><th colspan="2">
 	<input type="submit" value="가입 완료">
+	<input type="button" value="돌아가기" onclick="location.href='/'"></th></tr>
+	</table>
 </form>
+</section>
+<footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
+
 </body>
 </html>

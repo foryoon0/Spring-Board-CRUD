@@ -7,35 +7,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./resources/CSS/detailCSS.css">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./resources/CSS/boardCSS.css">
 </head>
 <body>
 <header><h1 class="main">그린 아카데미</h1></header>
 <section> 
 <a href="<c:url value='/login/loginForm' />">[로그인]</a>
 <a href="<c:url value='/member/join' />">[회원가입]</a>
-	<h1>QnA 게시판</h1>
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<c:forEach var="board" items="${Board}" varStatus="b">
-				<tr>
-					<td>${board.qnaBoardNum}</td>
-					<td><a href="<c:url value='/board/ReadBoard/${board.qnaBoardNum}'/>">${board.qnaBoardTitle}</a></td>
-					<td>${board.memberName}</td>
-					<td>${board.qnaBoardRegdate}</td>
-					<td>${board.qnaBoardCount}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	
-
+	<h2>QnA 게시판</h2>
+	<table>
+		<tr>
+			<td>제목 : <input type="text" value="${board.qnaBoardTitle}"></td>
+		</tr>
+		<tr>
+			<td>작성일 : <input type="text" value="${board.qnaBoardRegdate}"></td>
+		</tr>
+		<tr>
+			<td>작성자 : <input type="text" value="${board.memberName}"></td>
+		</tr>
+		<tr>
+			<td>조회수 : <input type="text" value="${board.qnaBoardCount}"></td>
+		</tr>
+		<tr>
+			<td><textarea rows="5" cols="30">${board.qnaBoardContent}</textarea></td>
+		</tr>
+	</table>
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>
