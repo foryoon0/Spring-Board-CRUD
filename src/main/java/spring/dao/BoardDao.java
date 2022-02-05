@@ -34,16 +34,22 @@ public class BoardDao {
 	}
 		
 	public List<Board> selectAll() { 
-			String sql = "SELECT b.qnaBoardTitle, m.memberName, b.qnaBoardRegdate, b.qnaBoardCount FROM BOARDS B, MEMBERS M WHERE B.memberNum = M.memberNum ORDER BY QNABOARDNUM DESC";
+			String sql = "SELECT b.*,m.* FROM boards b left outer join members m on b.memberNum = m.memberNum ORDER BY QNABOARDNUM DESC ";
 			
-
-			
-			List<Board> list= jdbcTemplate.query(sql, mapper);
-			
+			List<Board> list= jdbcTemplate.query(sql, (rs,rowNum)->{
+					Board board = new Board(
+						rs.getString("qnaBoardTitle"),
+						rs.getString("memberName"),
+						rs.getTimestamp("qnaBoardRegdate"),
+						rs.getInt("qnaBoardCount"));
+				board.setQnaBoardNum(rs.getInt("qnaBoardNum"));
+			return board;
+		});
+			System.out.println("리스트최종");
 			return list;
-		}
 		
 		}
+}
 	
 	
 

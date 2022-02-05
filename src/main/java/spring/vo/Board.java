@@ -1,5 +1,6 @@
 package spring.vo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Board {
@@ -10,10 +11,16 @@ public class Board {
 	private String qnaBoardContent;
 	private Date qnaBoardRegdate;
 	private int qnaBoardCount;
-
 	private String memberName;
+	
+	
 
-	public Board() {
+
+	public Board(String qnaBoardTitle, String memberName, Date qnaBoardRegdate, int qnaBoardCount) {
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.memberName = memberName;
+		this.qnaBoardRegdate = qnaBoardRegdate;
+		this.qnaBoardCount = qnaBoardCount;
 	}
 
 	public Board(int qnaBoardNum, String qnaBoardTitle, String memberName, Date qnaBoardRegdate, int qnaBoardCount) {
@@ -33,6 +40,8 @@ public class Board {
 		this.qnaBoardCount = qnaBoardCount;
 		this.qnaBoardContent = qnaBoardContent;
 	}
+
+	
 
 	public int getQnaBoardNum() {
 		return qnaBoardNum;

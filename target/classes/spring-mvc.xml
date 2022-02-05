@@ -14,9 +14,6 @@
 		<mvc:jsp prefix="/WEB-INF/views/"/>
 	</mvc:view-resolvers>
 
-	<mvc:view-controller path="/" view-name="main"/> <!-- 경로를 jsp로 연결 -->
-						<!--   /로 연결되면 main.jsp로 연결시켜주는 기능  -->
-	<mvc:view-controller path="/main" view-name="main"/>
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

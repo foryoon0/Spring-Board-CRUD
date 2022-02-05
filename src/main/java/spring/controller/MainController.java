@@ -21,6 +21,7 @@ public class MainController {
 	}
 	@RequestMapping("/")
 	public String list(@ModelAttribute("listCommand") ListCommand listCommand,Model model) {
+		System.out.println("리스트실행");
 		
 		List<Board> list = dao.selectAll();	
 		model.addAttribute("Board",list);

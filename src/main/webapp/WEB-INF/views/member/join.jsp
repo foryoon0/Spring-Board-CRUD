@@ -9,49 +9,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form:form action="main" commandName="formData">
+<form action="registComp" method="POST">
 	<p>
-		<label><spring:message code="email" />:<br>
-			<%-- <input type="email" name="email" id="email" value="${formData.email}"> --%>
-			<form:input path="email"/>
-			<form:errors path="email"/><!--  에러가 없다면 출력이 안됨 / 에러코드가 있다면 에러코드에 해당하는 라벨을 출력 -->
+		<label>이메일:<br>
+			<input type="email" name="useremail" id="useremail">
 		</label>
 	</p>
 	<p>
-		<label><spring:message code="name" />:<br>
-			<form:input path="name"/>
-			<form:errors path="name"/>
+		<label>아이디:<br>
+			<input type="text" name="userid" id="userid" value="${formData.name}">
 		</label>
 	</p>
 	<p>
-		<label><spring:message code="password" />:<br>
-			<form:password path="password"/>
-			<form:errors path="password"/>
+		<label>이름:<br>
+			<input type="text" name="username" id="username">
 		</label>
 	</p>
 	<p>
-		<label><spring:message code="password.confirm" />:<br>
-			<form:password path="confirmPassword"/>
-			<form:errors path="confirmPassword"/>
+		<label>비밀번호:<br>
+			<input type="password" name="userpassword" id="userpassword">
 		</label>
 	</p>
 	<p>
-		<label><spring:message code="password.confirm" />:<br>
-			<form:password path="confirmPassword"/>
-			<form:errors path="confirmPassword"/>
+		<label>비밀번호 확인:<br>
+			<input type="password" name="userconfirmPassword" id="userconfirmPassword">
 		</label>
 	</p>
 	<p>
-		<label><spring:message code="password.confirm" />:<br>
-			<form:password path="confirmPassword"/>
-			<form:errors path="confirmPassword"/>
+		<label>전화번호:<br>
+			<input type="tel" name="userphone" id="userphone">
 		</label>
 	</p>
-	<input type="submit" value="<spring:message code="register.btn" />">
-
-
-</form:form>
-
+	<input type="submit" value="가입 완료">
+</form>
 </body>
 </html>

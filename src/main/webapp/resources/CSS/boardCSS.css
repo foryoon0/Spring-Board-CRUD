@@ -1,41 +1,44 @@
 @charset "UTF-8";
-
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
 *{
     box-sizing: border-box;
     margin: 0auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    place-items: center;
+    text-align: center;
 }
 
 .main{
-  	border: 1px solid black;
     text-align: center;
 }
 
 
 section{
     text-align: center;
-    border: 1px solid black;
     place-items: center;
+    margin: 30px;
 }
 
 table{
     align-items: center;
     margin: 0 auto;
     text-align: center;
-    border: 1px solid black;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
 }
-
 
 th{
-    background-color: yellowgreen;
-    border: 1px solid black;
+	background-color: rgb(249,242,266);
+}
+
+
+th,td{
+    border-bottom: 1px solid #444444;
+    padding: 10px;
 
 }
 
-td{
-    background-color:wheat;
-}
 
 
 a:link { color: black; text-decoration: none;}

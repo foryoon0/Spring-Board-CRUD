@@ -12,20 +12,21 @@
 </head>
 <body>
 <header><h1 class="main">그린 아카데미</h1></header>
-<p><a href="<c:url value='/login/loginForm' />">[로그인]</a></p>
-<p><a href="<c:url value='/member/join' />">[회원가입]</a></p>
 <section> 
+<a href="<c:url value='/login/loginForm' />">[로그인]</a>
+<a href="<c:url value='/member/join' />">[회원가입]</a>
 	<h1>QnA 게시판</h1>
-	<c:if test="${!empty board}">
-		<table border=1>
+		<table>
 			<tr>
-				<th>아이디</th>
-				<th>이메일</th>
-				<th>이름</th>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
 			</tr>
-			<c:forEach var="board" items="${board}" varStatus="b">
+			<c:forEach var="board" items="${Board}" varStatus="b">
 				<tr>
-					<td>${b.count}</td>
+					<td>${board.qnaBoardNum}</td>
 					<td>${board.qnaBoardTitle}</td>
 					<td>${board.memberName}</td>
 					<td>${board.qnaBoardRegdate}</td>
@@ -34,12 +35,8 @@
 			</c:forEach>
 		</table>
 	
-	</c:if>
-	
-	
-	
 
 </section>
-<footer><h1 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h1></footer>
+<footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>
 </html>
