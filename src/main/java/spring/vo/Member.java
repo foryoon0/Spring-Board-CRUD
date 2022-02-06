@@ -10,6 +10,15 @@ public class Member {
 	private String memberPhone;
 	
 	
+
+	public Member(int memberNum, String memberId, String memberName, String memberEmail, String memberPhone) {
+		super();
+		this.memberNum = memberNum;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+	}
 	
 	public Member(String memberPassword, String memberName, String memberEmail, String memberPhone) {
 		super();

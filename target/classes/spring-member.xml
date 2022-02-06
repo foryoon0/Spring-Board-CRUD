@@ -41,11 +41,16 @@
 		<constructor-arg ref="memberDao"/>
 	</bean>
 	
+	<bean class="spring.service.PostRegisterService" id="pregSvc">
+		<constructor-arg ref="dao"/>
+	</bean>
+	
+	
+	
 	<bean id="authService" class="spring.service.AuthService">
 		<property name="memberDao" ref="memberDao" />
 	</bean>
 	
-
 	
 
 

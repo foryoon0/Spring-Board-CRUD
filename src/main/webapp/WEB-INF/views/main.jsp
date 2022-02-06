@@ -13,8 +13,18 @@
 <body>
 <header><h1 class="main">그린 아카데미</h1></header>
 <section> 
-<a href="<c:url value='/login/loginForm' />">[로그인]</a>
-<a href="<c:url value='/member/join' />">[회원가입]</a>
+	<c:if test="${empty authInfo}">
+		<a href="<c:url value='/login/loginForm' />">[로그인]</a>
+		<a href="<c:url value='/member/join' />">[회원가입]</a>
+	</c:if>
+
+	<c:if test="${!empty authInfo}">
+		<h2>💗${authInfo.memberName}님 반갑습니다💗</h2>
+		<a href="<c:url value='/member/ReadMember/${authInfo.memberName}' />">[정보보기]</a>
+		<a href="<c:url value='/logout' />">[로그아웃]</a>
+	</c:if>
+
+
 	<h1>QnA 게시판</h1>
 		<table>
 			<tr>
@@ -34,7 +44,13 @@
 				</tr>
 			</c:forEach>
 		</table>
-	
+		
+		<c:if test="${!empty authInfo}">
+
+		<a href="<c:url value='/board/WriteBoard/' />">[글작성]</a>
+
+		</c:if>
+		
 
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>

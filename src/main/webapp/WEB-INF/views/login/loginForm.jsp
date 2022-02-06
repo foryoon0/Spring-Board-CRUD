@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +13,20 @@
 <body>
 <header><h1 class="main">그린 아카데미</h1></header>
 <section> 
-	<form action="" method="POST">
-	<table>
-		<tr>
-			<th>아이디</th>
-				<td><input type="text" id="memberId" name="memberId"></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-				<td><input type="password" id="memberPassword" name="memberPassword"></td>
-		</tr>
-	</table>
-	<input type="submit" value="로그인" class=btn>
-	<input type="button" value="회원가입" class=btn onclick="location.href='/member/join '">
-	</form>	
+	<form:form commandName="loginCommand">
+		<table>
+			<tr> <th>아이디</th>  
+				<td><form:input path="memberId"/>
+				<form:errors path="memberId"/></td>
+			</tr>
+			<tr><th>비밀번호</th>
+				<td><form:password path="memberPassword"/>
+				<form:errors path="memberPassword" htmlEscape="false"/></td>
+		</table>
+		<input type="submit" value="로그인" class=btn>
+		<input type="button" value="회원가입" class=btn onclick="location.href='/member/join '">
+	</form:form>
+
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 

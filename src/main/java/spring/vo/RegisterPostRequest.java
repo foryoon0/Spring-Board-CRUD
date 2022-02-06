@@ -1,63 +1,37 @@
 package spring.vo;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-public class Board {
+public class RegisterPostRequest {
 
 	private int qnaBoardNum;
 	private int memberNum;
 	private String qnaBoardTitle;
 	private String qnaBoardContent;
-	private Date qnaBoardRegdate;
+	private Timestamp qnaBoardRegdate;
 	private int qnaBoardCount;
 	private String memberName;
+
 	
 
-	public Board(String memberName, String qnaBoardTitle, String qnaBoardContent) {
+	public RegisterPostRequest(String qnaBoardTitle, String qnaBoardContent, String memberName) {
 		this.qnaBoardTitle = qnaBoardTitle;
 		this.qnaBoardContent = qnaBoardContent;
 		this.memberName = memberName;
 	}
 
-	public Board(int memberNum, String memberName) {
-		this.memberNum = memberNum;
-		this.memberName = memberName;
-	}
-
-	public Board(String qnaBoardTitle, String memberName, Date qnaBoardRegdate, int qnaBoardCount) {
+	public RegisterPostRequest(String qnaBoardTitle, String qnaBoardContent) {
 		this.qnaBoardTitle = qnaBoardTitle;
-		this.memberName = memberName;
-		this.qnaBoardRegdate = qnaBoardRegdate;
-		this.qnaBoardCount = qnaBoardCount;
+		this.qnaBoardContent = qnaBoardContent;
 	}
 
-	public Board(int qnaBoardNum, String qnaBoardTitle, String memberName, Date qnaBoardRegdate, int qnaBoardCount) {
+	public RegisterPostRequest(int qnaBoardNum, String qnaBoardTitle, String qnaBoardContent, Timestamp qnaBoardRegdate,
+			int qnaBoardCount) {
 		this.qnaBoardNum = qnaBoardNum;
 		this.qnaBoardTitle = qnaBoardTitle;
-		this.memberName = memberName;
+		this.qnaBoardContent = qnaBoardContent;
 		this.qnaBoardRegdate = qnaBoardRegdate;
 		this.qnaBoardCount = qnaBoardCount;
-	}
-
-	public Board(String qnaBoardTitle, Date qnaBoardRegdate, String memberName, int qnaBoardCount,
-			String qnaBoardContent) {
-
-		this.qnaBoardTitle = qnaBoardTitle;
-		this.qnaBoardRegdate = qnaBoardRegdate;
-		this.memberName = memberName;
-		this.qnaBoardCount = qnaBoardCount;
-		this.qnaBoardContent = qnaBoardContent;
-	}
-
-	
-
-	
-
-	public Board(String qnaBoardTitle, String qnaBoardContent) {
-		super();
-		this.qnaBoardTitle = qnaBoardTitle;
-		this.qnaBoardContent = qnaBoardContent;
 	}
 
 	public int getQnaBoardNum() {
@@ -92,11 +66,11 @@ public class Board {
 		this.qnaBoardContent = qnaBoardContent;
 	}
 
-	public Date getQnaBoardRegdate() {
+	public Timestamp getQnaBoardRegdate() {
 		return qnaBoardRegdate;
 	}
 
-	public void setQnaBoardRegdate(Date qnaBoardRegdate) {
+	public void setQnaBoardRegdate(Timestamp qnaBoardRegdate) {
 		this.qnaBoardRegdate = qnaBoardRegdate;
 	}
 

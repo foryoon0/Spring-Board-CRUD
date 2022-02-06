@@ -11,6 +11,10 @@
 		<property name="memberRegisterService" ref="regSvc"/>
 	</bean>
 	
+	<bean id="registerPostController" class="spring.controller.RegisterPostController" >
+		<property name="postRegisterService" ref="pregSvc"/>
+	</bean>
+	
 	<bean id="loginController" class="spring.controller.LoginController" >
 		<property name="authService" ref="authService"/>
 	</bean>
@@ -18,6 +22,11 @@
 	<bean id="readController" class="spring.controller.ReadController" >
 		<property name="dao" ref="dao" />
 	</bean>
-
-
+	
+	<bean id="logoutController" class="spring.controller.LogoutController" />
+	
+	<bean id="readMemberController" class="spring.controller.ReadMemberController">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
 </beans>

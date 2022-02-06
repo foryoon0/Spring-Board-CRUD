@@ -65,11 +65,11 @@ private JdbcTemplate jdbcTemplate;
 		}
 	
 	
-		////////////////////////////////////////////
-		//로그인 기능
+		////////////////////////////////////////////////////////////////////////////////////////////
+		//로그인 기능 아이디를 통해서 조회하기
 		public Member selectById(String memberId) {
 		
-		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memeberId=?", new RowMapper<Member>() {
+		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberId=?", new RowMapper<Member>() {
 
 							@Override
 							public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -77,12 +77,34 @@ private JdbcTemplate jdbcTemplate;
 												rs.getString("memberPassword"),
 												rs.getString("memberName"),
 												rs.getString("memberEmail"),
-												rs.getString("memberPhone "));
+												rs.getString("memberPhone"));
 										member.setMemberId(rs.getString("memberId"));
 									return member;
 							}} ,memberId);
 		
 		return list.isEmpty()?null:list.get(0);
 	}
+		
+		
+	///////////////////////////////////////////////////////////
+	//selectByName 회원정보 디테일 읽어오기
+		public Member selectByName(String memberName) {
+			
+			List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberName=?", new RowMapper<Member>() {
+							@Override
+								public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+											Member member = new Member(
+													rs.getInt("memberNum"),
+													rs.getString("memberId"),
+													rs.getString("memberName"),
+													rs.getString("memberEmail"),
+													rs.getString("memberPhone")); 
+											member.setMemberName(rs.getString("memberName"));
+										return member;
+								}} ,memberName);
+			
+			return list.isEmpty()?null:list.get(0);
+		}	
+		
 		
 	}
