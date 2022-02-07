@@ -18,21 +18,22 @@
 		<h2>💗${authInfo.memberName}님 반갑습니다💗</h2>
 		<a href="<c:url value='/member/ReadMember/${authInfo.memberName}' />">[정보보기]</a>
 		<a href="<c:url value='/logout' />">[로그아웃]</a>
+		
 	</c:if>
 	
 		<form action="writing" method="POST">
 			<table>
+				
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="qnaBoardTitle" id="qnaBoardTitle"
-						required></td>
+					<td><input type="text" name="qnaBoardTitle" id="qnaBoardTitle" required></td>
 				</tr>
 				<tr>
 					<td colspan="2"><textarea rows="5" cols="30"
-							placeholder="글 내용을 입력하세요"></textarea></td>
+							placeholder="글 내용을 입력하세요" name="qnaBoardContent" id="qnaBoardContent"></textarea></td>
 				</tr>
 			</table>
-
+			<input type="hidden" name="memberNum" id="memberNum" value="${authInfo.memberNum}">
 			<input type="submit" value="질문 작성" class="btn"> 
 			<input type="button" value="목록보기" class="btn" onclick="location.href='/'">
 		</form>

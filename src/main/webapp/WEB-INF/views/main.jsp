@@ -22,6 +22,7 @@
 		<h2>💗${authInfo.memberName}님 반갑습니다💗</h2>
 		<a href="<c:url value='/member/ReadMember/${authInfo.memberName}' />">[정보보기]</a>
 		<a href="<c:url value='/logout' />">[로그아웃]</a>
+		<input type="hidden" value="${authInfo.memberNum}">
 	</c:if>
 
 
@@ -47,10 +48,10 @@
 		
 		<c:if test="${!empty authInfo}">
 
-		<a href="<c:url value='/board/WriteBoard/' />">[글작성]</a>
+		<a href="<c:url value='/board/WriteBoard' />">[글작성]</a>
 
 		</c:if>
-		
+	
 
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>

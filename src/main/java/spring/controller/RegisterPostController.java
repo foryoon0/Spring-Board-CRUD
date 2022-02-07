@@ -33,10 +33,16 @@ public class RegisterPostController {
 	
 	@RequestMapping(value="/writing", method=RequestMethod.POST)
 	public String writing(
-			@RequestParam(value="memberName")String memberName,
+			@RequestParam(value="memberNum")int memberNum,
 			@RequestParam(value="qnaBoardTitle")String qnaBoardTitle,
 			@RequestParam(value="qnaBoardContent")String qnaBoardContent) {
-		RegisterPostRequest preq = new RegisterPostRequest(qnaBoardTitle,qnaBoardContent);
+			
+		System.out.println("memberNum: " + memberNum );
+		System.out.println("qnaBoardTitle: " + qnaBoardTitle );
+		System.out.println("qnaBoardContent: " + qnaBoardContent );
+		
+
+		RegisterPostRequest preq = new RegisterPostRequest(memberNum,qnaBoardTitle,qnaBoardContent);
 		postRegisterService.pregist(preq);
 		
 		return "redirect:/";

@@ -24,10 +24,16 @@
 		<a href="<c:url value='/logout' />">[로그아웃]</a>
 	</c:if>
 	<h2>QnA 게시판</h2>
+	<form action="/editPost/${qnaBoardNum}" method="POST">
 	<table>
 		<tr>
 			<th>제목</th> 
-			<td>${board.qnaBoardTitle}</td>
+			<c:if test="${board.memberName != authInfo.memberName}">
+				<td>${board.qnaBoardTitle}</td>
+			</c:if>
+			<c:if test="${board.memberName == authInfo.memberName}">
+				<td><input type="text" id="qnaBoardTitle" name="qnaBoardTitle" value="${board.qnaBoardTitle}"></td>
+			</c:if>
 		</tr>
 		<tr>
 			<th>작성일</th>
@@ -42,13 +48,22 @@
 			<td>${board.qnaBoardCount}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><textarea rows="5" cols="30">${board.qnaBoardContent}</textarea></td>
+			<c:if test="${board.memberName != authInfo.memberName}">
+				<td colspan="2" class="content">${board.qnaBoardContent}</td>
+			</c:if>
+			<c:if test="${board.memberName == authInfo.memberName}">
+				<td colspan="2"><textarea rows="5" cols="30" id="qnaBoardContent" name="qnaBoardContent">${board.qnaBoardContent}</textarea></td>
+			</c:if>
 		</tr>
 	</table>
-	<c:if test="${!empty authInfo}">
-		<a href="<c:url value='/board/ReadBoard' />">[수정]</a>
-		<a href="<c:url value='/logout' />">[삭제]</a>
+	
+		<input type="hidden" name="qnaBoardNum" id="qnaBoardNum" value="${board.qnaBoardNum}">
+	<c:if test="${board.memberName == authInfo.memberName}">
+		<input type="submit" value="수정" class="btn">
+		<input type="button" value="삭제" onclick="location.href='/board/deletePost/${qnaBoardNum}'" class="btn">
+		<input type="button" value="목록으로" onclick="location.href='/'" class="btn">
 	</c:if>
+	</form>
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>

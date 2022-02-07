@@ -1,5 +1,7 @@
 package spring.vo;
 
+import java.sql.Timestamp;
+
 public class Member {
 	
 	private int memberNum;
@@ -10,11 +12,30 @@ public class Member {
 	private String memberPhone;
 	
 	
+	
+	public Member(String memberId, String memberName, String memberEmail, String memberPhone, int memberNum) {
 
-	public Member(int memberNum, String memberId, String memberName, String memberEmail, String memberPhone) {
-		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+	}
+
+	public Member(int memberNum, String memberId, String memberPassword, String memberName, String memberEmail,
+			String memberPhone) {
+		this.memberNum = memberNum;
+		this.memberId = memberId;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+	}
+
+	public Member(int memberNum, String memberPassword, String memberName, String memberEmail, String memberPhone) {
+
+		this.memberNum = memberNum;
+		this.memberPassword = memberPassword;
 		this.memberName = memberName;
 		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
@@ -42,6 +63,13 @@ public class Member {
 		this.memberName = memberName;
 	}
 	
+	
+	public Member(int memberNum, String memberId, String memberName) {
+		this.memberNum = memberNum;
+		this.memberId = memberId;
+		this.memberName = memberName;
+	}
+
 	public int getMemberNum() {
 		return memberNum;
 	}

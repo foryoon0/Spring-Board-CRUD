@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
+import spring.vo.Board;
 import spring.vo.Member;
 
 public class MemberDao {
@@ -21,7 +22,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	
-	//ÀÌ¸ŞÀÏ ¼±ÅÃ
+	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public Member selectByEmail(String email) {
 
 		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberEmail=?", new RowMapper<Member>() {
@@ -42,11 +43,11 @@ private JdbcTemplate jdbcTemplate;
 	
 	
 	//////////////////////////////////////////// 
-	//È¸¿ø°¡ÀÔ ±â´É
+	//íšŒì›ê°€ì…
 	public void insert(Member newMember) {
 			
 			int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
-								// ¹Ì¿Ï¼ºÀÇ Äõ¸®¸¦ ¼öµ¿À¸·Î ¿Ï¼º½ÃÅ°´Â ±â´É
+								// ï¿½Ì¿Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½
 				@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					PreparedStatement psmt = con.prepareStatement(
@@ -61,12 +62,12 @@ private JdbcTemplate jdbcTemplate;
 					return psmt;
 				}
 			});
-			System.out.println("INSERT·Î »ğÀÔµÈ µ¥ÀÌÅÍÀÇ °³¼ö : "+cnt);
+			System.out.println("INSERTï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+cnt);
 		}
 	
 	
 		////////////////////////////////////////////////////////////////////////////////////////////
-		//·Î±×ÀÎ ±â´É ¾ÆÀÌµğ¸¦ ÅëÇØ¼­ Á¶È¸ÇÏ±â
+		// idë¥¼ í†µí•´ ì¡°íšŒ ë©¤ë²„ ë””í…Œì¼ ì •ë³´ ì½ì–´ì˜¤ê¸°
 		public Member selectById(String memberId) {
 		
 		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberId=?", new RowMapper<Member>() {
@@ -74,6 +75,7 @@ private JdbcTemplate jdbcTemplate;
 							@Override
 							public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
 										Member member = new Member(
+												rs.getInt("memberNum"),
 												rs.getString("memberPassword"),
 												rs.getString("memberName"),
 												rs.getString("memberEmail"),
@@ -87,7 +89,7 @@ private JdbcTemplate jdbcTemplate;
 		
 		
 	///////////////////////////////////////////////////////////
-	//selectByName È¸¿øÁ¤º¸ µğÅ×ÀÏ ÀĞ¾î¿À±â
+	//selectByName 
 		public Member selectByName(String memberName) {
 			
 			List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberName=?", new RowMapper<Member>() {
@@ -96,6 +98,7 @@ private JdbcTemplate jdbcTemplate;
 											Member member = new Member(
 													rs.getInt("memberNum"),
 													rs.getString("memberId"),
+													rs.getString("memberPassword"),
 													rs.getString("memberName"),
 													rs.getString("memberEmail"),
 													rs.getString("memberPhone")); 
@@ -106,5 +109,49 @@ private JdbcTemplate jdbcTemplate;
 			return list.isEmpty()?null:list.get(0);
 		}	
 		
+	//////////////////////////////////////////////////////////////////
+	///////////////ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ëŠ” ë©”ì†Œë“œ
+			
+		public List<Member> selectAll() {
+				String sql = "SELECT * from members";
+	
+				List<Member> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
+					Member member = new Member(rs.getInt("memberNum"), 
+											rs.getString("memberId"),
+											rs.getString("memberName"));
+						member.setMemberNum(rs.getInt("memberNum"));
+					return member;
+				});
+				
+				return list;
+	
+			}
+////////////////////////////////////////////////////////////////////////
+/// ê²Œì‹œê¸€ ìˆ˜ì • ë©”ì†Œë“œ edit
+
+		public void edit(Member member) {
+		
+		int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
+		
+		
+		@Override
+		public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+		PreparedStatement psmt = con.prepareStatement(
+		"UPDATE members SET memberId = ?, memberName = ? , memberEmail = ?, memberPhone = ? WHERE memberNum = ?");
+		
+		
+		psmt.setString(1,member.getMemberId());
+		psmt.setString(2,member.getMemberName());
+		psmt.setString(3,member.getMemberEmail());
+		psmt.setString(4,member.getMemberPhone());
+		psmt.setInt(5,member.getMemberNum());
+		
+		
+		return psmt;
+		}
+		});
+		
+		System.out.println("ë©¤ë²„ ë°ì´íŠ¸ê°¯ìˆ˜ :" + cnt);
+		}
 		
 	}

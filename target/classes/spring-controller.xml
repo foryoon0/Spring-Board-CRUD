@@ -6,6 +6,14 @@
 	<bean id="mainController" class="spring.controller.MainController" >
 		<property name="dao" ref="dao"/>
 	</bean>
+	
+	<bean id="memberListController" class="spring.controller.MemberListController" >
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="updateMemberUpdate" class="spring.controller.UpdateMemberUpdate" >
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
 
 	<bean id="registerController" class="spring.controller.RegisterController" >
 		<property name="memberRegisterService" ref="regSvc"/>
@@ -25,8 +33,20 @@
 	
 	<bean id="logoutController" class="spring.controller.LogoutController" />
 	
+	<bean id="deletePostController" class="spring.controller.DeletePostController">
+		<property name="dao" ref="dao" />
+	</bean>
+	
 	<bean id="readMemberController" class="spring.controller.ReadMemberController">
 		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="adminReadMemberController" class="spring.controller.AdminReadMemberController">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="updateController" class="spring.controller.UpdateController">
+		<property name="dao" ref="dao" />
 	</bean>
 	
 </beans>

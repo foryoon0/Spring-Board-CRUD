@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
 *{
@@ -14,9 +13,38 @@
     text-align: center;
 }
 
-.btn{
-	margin: 10px;
+.wrap{
+    flex-wrap: wrap;
+    position:relative;
+    display: inline-block;
+    margin: 100px;
 }
+
+.first{ 
+	width:300px;
+	height:100px;
+	background-color: rgb(255,204,299);
+	margin: 10px;
+	padding: 10px;
+    border-radius: 2rem;
+    float: left;
+    text-align: center;
+    line-height: 80px;
+
+}
+
+.second{
+	width:300px;
+	height:100px;
+	margin: 10px;
+	padding: 10px;
+	background-color: rgb(229,204,255);
+    border-radius: 2rem;
+	float: left;
+    text-align: center;
+    line-height: 80px;
+}
+
 
 section{
     text-align: center;
@@ -30,7 +58,10 @@ table{
     text-align: center;
     border-top: 1px solid #444444;
     border-collapse: collapse;
-    width:400px;
+}
+
+th{
+	background-color: rgb(249,242,266);
 }
 
 
@@ -40,12 +71,9 @@ th,td{
 
 }
 
-.btn{
-	margin: 10px;
-}
 
 
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
-a:hover { color: purple; text-decoration: underline;}
+a:hover { color: purple; text-decoration: none;}
 

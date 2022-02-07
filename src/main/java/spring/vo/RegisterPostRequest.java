@@ -14,6 +14,21 @@ public class RegisterPostRequest {
 
 	
 
+	public RegisterPostRequest(int memberNum, String qnaBoardTitle, String qnaBoardContent) {
+		super();
+		this.memberNum = memberNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.qnaBoardContent = qnaBoardContent;
+	}
+
+
+	public RegisterPostRequest(int memberNum, String qnaBoardTitle, String qnaBoardContent, String memberName) {
+		this.memberNum = memberNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.qnaBoardContent = qnaBoardContent;
+		this.memberName = memberName;
+	}
+
 	public RegisterPostRequest(String qnaBoardTitle, String qnaBoardContent, String memberName) {
 		this.qnaBoardTitle = qnaBoardTitle;
 		this.qnaBoardContent = qnaBoardContent;

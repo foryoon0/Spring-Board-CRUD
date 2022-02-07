@@ -1,3 +1,6 @@
+CREATE SEQUENCE members_seq
+START WITH 10001
+NOCACHE;
 
 
 /* members테이블 생성 */
@@ -11,19 +14,19 @@ memberPhone VARCHAR2(13) NOT NULL);
 
 /* members 샘플 데이터 */
 INSERT INTO members
-VALUES(10001,'admin','1234','관리자','admin@green.com','010-1234-5678');
+VALUES(members_seq.NEXTVAL,'admin','1234','관리자','admin@green.com','010-1234-5678');
 INSERT INTO members
-VALUES(10002,'park','1234','박민준','park@green.com','010-1234-5679');
+VALUES(members_seq.NEXTVAL,'park','1234','박민준','park@green.com','010-1234-5679');
 INSERT INTO members
-VALUES(10003,'kim','1234','김서연','kim@green.com','010-1234-4680');
+VALUES(members_seq.NEXTVAL,'kim','1234','김서연','kim@green.com','010-1234-4680');
 INSERT INTO members
-VALUES(10004,'lee','1234','이서준','lee@green.com','010-1234-5681');
+VALUES(members_seq.NEXTVAL,'lee','1234','이서준','lee@green.com','010-1234-5681');
 INSERT INTO members
-VALUES(10005,'jung','1234','정서윤','jung@green.com','010-1234-5682');
+VALUES(members_seq.NEXTVAL,'jung','1234','정서윤','jung@green.com','010-1234-5682');
 INSERT INTO members
-VALUES(10006,'choi','1234','최예준','choi@green.com','010-1234-5683');
+VALUES(members_seq.NEXTVAL,'choi','1234','최예준','choi@green.com','010-1234-5683');
 INSERT INTO members
-VALUES(10007,'jo','1234','조지우','jo@green.com','010-1234-5684');
+VALUES(members_seq.NEXTVAL,'jo','1234','조지우','jo@green.com','010-1234-5684');
 
 
 

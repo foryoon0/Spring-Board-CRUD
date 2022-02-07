@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../../../resources/CSS/memberCSS.css">
+<script src="../../../resources/jquery/jquery-3.6.0.js"></script>
 <title>회원 정보 보기</title>
 </head>
 <body>

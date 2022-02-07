@@ -42,6 +42,9 @@ public class LoginController {
 			
 			// 로그인 정보를 기록할 세션 코드
 			session.setAttribute("authInfo", authInfo);
+			if(loginCommand.getMemberId().contentEquals("admin")) {
+				return "redirect:/adminmain";
+			}
 			
 		}catch(IdPasswordNotMatchingException e) {
 			//아이디가 없거나, 비밀번호가 틀린경우

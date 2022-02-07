@@ -10,7 +10,7 @@ public class LogoutController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.invalidate(); //技记俊 历厘等 葛电 单捞磐甫 力芭
+		session.invalidate(); 
 		
 		return "redirect:/";
 	}

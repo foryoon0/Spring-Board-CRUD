@@ -16,9 +16,10 @@ public class PostRegisterService {
 		this.boardDao = boardDao;
 	}
 	public void pregist(RegisterPostRequest preq) {
-	
+				
 			
-				Board newBoard = new Board(preq.getMemberName(),preq.getQnaBoardTitle(),preq.getQnaBoardContent());
+				Board newBoard = new Board(preq.getMemberNum(),preq.getQnaBoardTitle(),preq.getQnaBoardContent());
+	
 				
 				boardDao.insert(newBoard); // 게시글 등록
 		

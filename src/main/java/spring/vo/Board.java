@@ -14,6 +14,35 @@ public class Board {
 	private String memberName;
 	
 
+	
+	
+
+	public Board(String qnaBoardTitle, String qnaBoardContent, int qnaBoardNum) {
+		this.qnaBoardNum = qnaBoardNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.qnaBoardContent = qnaBoardContent;
+	}
+
+
+	public Board(int qnaBoardNum, String qnaBoardTitle, Date qnaBoardRegdate, String memberName, int qnaBoardCount, String qnaBoardContent 
+			) {
+		super();
+		this.qnaBoardNum = qnaBoardNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.qnaBoardContent = qnaBoardContent;
+		this.qnaBoardRegdate = qnaBoardRegdate;
+		this.qnaBoardCount = qnaBoardCount;
+		this.memberName = memberName;
+	}
+
+
+	public Board(int memberNum, String qnaBoardTitle, String qnaBoardContent) {
+		this.memberNum = memberNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.qnaBoardContent = qnaBoardContent;
+	}
+
+
 	public Board(String memberName, String qnaBoardTitle, String qnaBoardContent) {
 		this.qnaBoardTitle = qnaBoardTitle;
 		this.qnaBoardContent = qnaBoardContent;
@@ -59,6 +88,11 @@ public class Board {
 		this.qnaBoardTitle = qnaBoardTitle;
 		this.qnaBoardContent = qnaBoardContent;
 	}
+
+	public Board(int qnaBoardNum) {
+		this.qnaBoardNum = qnaBoardNum;
+	}
+
 
 	public int getQnaBoardNum() {
 		return qnaBoardNum;

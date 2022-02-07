@@ -11,13 +11,14 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
 import spring.vo.Board;
-import spring.vo.Member;
 
 public class BoardDao {
 
 	private JdbcTemplate jdbcTemplate;
+	
+	
 
-	private RowMapper<Board> mapper = new RowMapper<Board>() {// ÀÍ¸í ±¸Çö °´Ã¼
+	private RowMapper<Board> mapper = new RowMapper<Board>() {// ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 
 		@Override
 		public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -41,13 +42,13 @@ public class BoardDao {
 			board.setQnaBoardNum(rs.getInt("qnaBoardNum"));
 			return board;
 		});
-		System.out.println("¸®½ºÆ®ÃÖÁ¾");
+		
 		return list;
 
 	}
 
 	////////////////////////////////////////////////////
-	// BoardNum ÅëÇØ¼­ °Ô½Ã¹° ³»¿ë ÀĞ¾î¿À±â selectByqnaBoardNum
+	// BoardNum
 	public Board selectByqnaBoardNum(int qnaBoardNum) {
 
 		List<Board> list = jdbcTemplate.query(
@@ -56,8 +57,12 @@ public class BoardDao {
 
 					@Override
 					public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
-						Board board = new Board(rs.getString("qnaBoardTitle"), rs.getTimestamp("qnaBoardRegdate"),
-								rs.getString("memberName"), rs.getInt("qnaBoardCount"),
+						Board board = new Board(
+								rs.getInt("qnaBoardNum"), 
+								rs.getString("qnaBoardTitle"), 
+								rs.getTimestamp("qnaBoardRegdate"),
+								rs.getString("memberName"), 
+								rs.getInt("qnaBoardCount"),
 								rs.getString("qnaBoardContent"));
 						board.setQnaBoardNum(rs.getInt("qnaBoardNum"));
 						return board;
@@ -68,7 +73,7 @@ public class BoardDao {
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// selectByName nameÀ» ÅëÇØ memberNum °¡Á®¿À±â////////////////////////////////////////////
+	// selectByName nameì„ í†µí•´ ì´ë¦„ ì¡°íšŒ í›„ ë¡œê·¸ì¸!
 	public Board selectByName(String memberName) {
 		List<Board> list= jdbcTemplate.query(
 				"SELECT b.*,m.* FROM boards b left outer join members m on b.memberNum = m.memberNum WHERE memberName=?",
@@ -81,30 +86,84 @@ public class BoardDao {
 								board.setMemberName(rs.getString("memberName"));
 						return board;
 				}} ,memberName);
-		System.out.println("ÀÌ¸§ °¡Á®¿À±â");
+		System.out.println("ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return list.isEmpty()?null:list.get(0);
 
 	}
 
 	/////////////////////////////////////////////////////////////////
-	//»õ·Î¿î °Ô½Ã¹° µî·Ï
+	// ê²Œì‹œê¸€ ë“±ë¡
 	public void insert(Board newBoard) {
 
 		int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
-	
+
 			
-			
-	// ¹Ì¿Ï¼ºÀÇ Äõ¸®¸¦ ¼öµ¿À¸·Î ¿Ï¼º½ÃÅ°´Â ±â´É
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement psmt = con
-						.prepareStatement("INSERT INTO boards VALUES(boards_seq.nextval,?,?,?,?,?)");
-
+				PreparedStatement psmt = con.prepareStatement(
+						"INSERT INTO boards VALUES(boards_seq.nextval,?,?,?,sysdate,0)");
+					
+					psmt.setInt(1,newBoard.getMemberNum());
+					psmt.setString(2,newBoard.getQnaBoardTitle());
+					psmt.setString(3,newBoard.getQnaBoardContent());
+	
 
 				return psmt;
 			}
 		});
-		System.out.println("INSERT·Î »ğÀÔµÈ µ¥ÀÌÅÍÀÇ °³¼ö : " + cnt);
+		System.out.println("ê²Œì‹œê¸€ ë“±ë¡ì™„ë£Œ ");
 	}
 
+	
+	////////////////////////////////////////////////////////////////////////
+	/// ê²Œì‹œê¸€ ì‚­ì œ
+	public void deletePostByCode(int qnaBoardNum) {
+		String sql = "DELETE FROM boards WHERE qnaBoardNum = ?";
+		
+		jdbcTemplate.update(sql,qnaBoardNum);
+		
+//		int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
+//			
+//			@Override
+//			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+//				PreparedStatement psmt = con.prepareStatement(
+//						"DELETE FROM boards WHERE qnaBoardNum = ?");
+//				
+//				psmt.setInt(1,qnaBoardNum);
+//				
+//				return psmt;
+//			}
+//		});
+
+		System.out.println("ì‚­ì œì™„ë£Œ");
+	}
+	
+
+	////////////////////////////////////////////////////////////////////////
+	/// ê²Œì‹œê¸€ ìˆ˜ì • ë©”ì†Œë“œ edit
+
+	public void edit(Board board) {
+		
+			int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement psmt = con.prepareStatement(
+						"UPDATE boards SET qnaBoardTitle = ?, qnaBoardContent = ? WHERE qnaBoardNum = ?");
+				
+					
+					psmt.setString(1,board.getQnaBoardTitle());
+					psmt.setString(2,board.getQnaBoardContent());
+					psmt.setInt(3,board.getQnaBoardNum());
+	
+					
+				return psmt;
+			}
+		});
+		
+		System.out.println("ê²Œì‹œê¸€ ì—…ë°ì´íŠ¸ê°¯ìˆ˜ :" + cnt);
+	}
+	
+	
 }
