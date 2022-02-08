@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +14,21 @@
 <section>
 	<h2>회원 정보 보기</h2>
 	
-	<form action="/editMember/${memberNum}" method="POST">
+	<form action="/editMember/${member.memberNum}" method="POST">
 	<table>
 		<tr>
 			<th colspan="2">📝회원 번호 ${member.memberNum}📝</th> 
 		</tr>
 		<tr>
 			<th>회원 아이디</th>
-			<td><input type="text" id="memberId" name="memberId" value="${member.memberId}" readonly ></td>
+			<c:if test="${member.memberName == authInfo.memberName}">
+				<td><input type="hidden" id="memberId" name="memberId" value="${member.memberId}">${member.memberId}</td>
+			</c:if>
+			<c:if test="${member.memberName != authInfo.memberName}">
+				<td><input type="text" id="memberId" name="memberId" value="${member.memberId}" class="focused-input" readonly ></td>
+			</c:if>
 		</tr>
+
 		<tr>
 			<th>회원 이름</th>  
 			<td><input type="text" id="memberName" name="memberName" value="${member.memberName}" readonly ></td>
@@ -42,13 +49,13 @@
 </form>
 </section>
 <script>
-	function updateMember(code){
+	function updateMember(){
 		
 		$('#memberId').attr('readonly',false);
 		$('#memberName').attr('readonly',false);
 		$('#memberEmail').attr('readonly',false);
 		$('#memberPhone').attr('readonly',false);
-		
+		$('.focused-input').focus();
 		$('#updatebtn').attr('type','hidden');
 		$('#updateToController').attr('type','submit');
 	}

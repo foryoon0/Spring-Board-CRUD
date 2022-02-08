@@ -19,12 +19,12 @@ public class AdminReadMemberController {
 		this.memberDao = memberDao;
 	}
 
-	@RequestMapping("/editadmin/{memberName}")
+	@RequestMapping("/editadmin/{memberNum}")
 	public String editadmin(
 			
-			@PathVariable("memberName") String memberName, Model model) {
+			@PathVariable("memberNum") int memberNum, Model model) {
 		
-		Member member = memberDao.selectByName(memberName);
+		Member member = memberDao.selectByNum(memberNum);
 		
 		if(member==null) {
 			throw new MemberNotFoundException();

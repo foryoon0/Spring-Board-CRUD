@@ -1,36 +1,37 @@
-CREATE SEQUENCE members_seq
+/* MEMBER ì‹œí€€ìŠ¤*/CREATE SEQUENCE members_seq 
 START WITH 10001
 NOCACHE;
 
 
-/* membersÅ×ÀÌºí »ý¼º */
+/* membersí…Œì´ë¸” ìƒì„± */
 CREATE TABLE members(
-memberNum NUMBER(6) PRIMARY KEY,
+memberNum NUMBER(6),
 memberId VARCHAR2(50) UNIQUE,
 memberPassword VARCHAR2(100) NOT NULL,
 memberName VARCHAR2(100) NOT NULL,
 memberEmail VARCHAR2(200),
-memberPhone VARCHAR2(13) NOT NULL);
+memberPhone VARCHAR2(13) NOT NULL,
+CONSTRAINT M_PK primary key (memberNum));
 
-/* members »ùÇÃ µ¥ÀÌÅÍ */
+/* members ìƒ˜í”Œ ë°ì´í„° */
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'admin','1234','°ü¸®ÀÚ','admin@green.com','010-1234-5678');
+VALUES(members_seq.NEXTVAL,'admin','1234','ê´€ë¦¬ìž','admin@green.com','010-1234-5678');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'park','1234','¹Ú¹ÎÁØ','park@green.com','010-1234-5679');
+VALUES(members_seq.NEXTVAL,'park','1234','ë°•ë¯¼ì¤€','park@green.com','010-1234-5679');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'kim','1234','±è¼­¿¬','kim@green.com','010-1234-4680');
+VALUES(members_seq.NEXTVAL,'kim','1234','ê¹€ì„œì—°','kim@green.com','010-1234-4680');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'lee','1234','ÀÌ¼­ÁØ','lee@green.com','010-1234-5681');
+VALUES(members_seq.NEXTVAL,'lee','1234','ì´ì„œì¤€','lee@green.com','010-1234-5681');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'jung','1234','Á¤¼­À±','jung@green.com','010-1234-5682');
+VALUES(members_seq.NEXTVAL,'jung','1234','ì •ì„œìœ¤','jung@green.com','010-1234-5682');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'choi','1234','ÃÖ¿¹ÁØ','choi@green.com','010-1234-5683');
+VALUES(members_seq.NEXTVAL,'choi','1234','ìµœì˜ˆì¤€','choi@green.com','010-1234-5683');
 INSERT INTO members
-VALUES(members_seq.NEXTVAL,'jo','1234','Á¶Áö¿ì','jo@green.com','010-1234-5684');
+VALUES(members_seq.NEXTVAL,'jo','1234','ì¡°ì§€ìš°','jo@green.com','010-1234-5684');
 
 
 
-/* boardsÅ×ÀÌºí »ý¼º */
+/* boardsí…Œì´ë¸” ìƒì„± */
 CREATE TABLE boards(
 qnaBoardNum NUMBER(6) PRIMARY KEY,
 memberNum NUMBER(6) NOT NULL,
@@ -40,43 +41,44 @@ qnaBoardRegdate DATE DEFAULT SYSDATE,
 qnaBoardCount NUMBER(10) DEFAULT 0,
 CONSTRAINT FK_BOARDS FOREIGN KEY(memberNum)
 REFERENCES members(memberNum)
+on delete cascade
 );
 
 
-
-/* boards½ÃÄö½º */
+/* boardsì‹œí€€ìŠ¤ */
 CREATE SEQUENCE boards_seq
 START WITH 101
 NOCACHE;
 
-/* boards»ùÇÃ µ¥ÀÌÅÍ */
+/* boardsìƒ˜í”Œ ë°ì´í„° */
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10002,'Áú¹®ÀÌ ÀÖ½À´Ï´Ù.','ÇÁ·ÎÅäÄÝ¿¡´Â ¾î¶² °ÍÀÌ ÀÖ³ª¿ä?','2020-09-15',5);
+VALUES(boards_seq.NEXTVAL,10002,'ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤.','í”„ë¡œí† ì½œì—ëŠ” ì–´ë–¤ ê²ƒì´ ìžˆë‚˜ìš”?','2020-09-15',5);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10003,'DB Áú¹®ÀÌ ÀÖ½À´Ï´Ù','ÀÎµ¦½º¸¦ ¸¸µå´Â ÀÌÀ¯´Â ¹«¾ùÀÎ°¡¿ä?','2020-10-13',4);
+VALUES(boards_seq.NEXTVAL,10003,'DB ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤','ì¸ë±ìŠ¤ë¥¼ ë§Œë“œëŠ” ì´ìœ ëŠ” ë¬´ì—‡ì¸ê°€ìš”?','2020-10-13',4);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10007,'½ºÇÁ¸µ¿¡ °ü·ÃÇØ¼­ Áú¹®ÀÌ ÀÖ½À´Ï´Ù.','½ºÇÁ¸µ°ú ½ºÇÁ¸µ ºÎÆ®ÀÇ Â÷ÀÌ°¡ ¹«¾ùÀÎ°¡¿ä?','2020-10-21',6);
+VALUES(boards_seq.NEXTVAL,10007,'ìŠ¤í”„ë§ì— ê´€ë ¨í•´ì„œ ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤.','ìŠ¤í”„ë§ê³¼ ìŠ¤í”„ë§ ë¶€íŠ¸ì˜ ì°¨ì´ê°€ ë¬´ì—‡ì¸ê°€ìš”?','2020-10-21',6);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10005,'¼­ºí¸´ ±Ã±ÝÇÑ °Ô ÀÖ¾î¿ä','¾î³ëÅ×ÀÌ¼Ç ¾øÀÌ ¸ÅÇÎÀ» ¾î¶»°Ô ÇÏ³ª¿ä?','2020-11-03',3);
+VALUES(boards_seq.NEXTVAL,10005,'ì„œë¸”ë¦¿ ê¶ê¸ˆí•œ ê²Œ ìžˆì–´ìš”','ì–´ë…¸í…Œì´ì…˜ ì—†ì´ ë§¤í•‘ì„ ì–´ë–»ê²Œ í•˜ë‚˜ìš”?','2020-11-03',3);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10004,'HTML¿¡ ±Ã±ÝÇÑ °Ô ÀÖ½À´Ï´Ù.','metaÅÂ±×´Â ¹«¾ùÀÌ¸ç ¾î¶² ³»¿ëÀ» ´ã°í ÀÖ³ª¿ä?','2020-11-16',7);
+VALUES(boards_seq.NEXTVAL,10004,'HTMLì— ê¶ê¸ˆí•œ ê²Œ ìžˆìŠµë‹ˆë‹¤.','metaíƒœê·¸ëŠ” ë¬´ì—‡ì´ë©° ì–´ë–¤ ë‚´ìš©ì„ ë‹´ê³  ìžˆë‚˜ìš”?','2020-11-16',7);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10003,'DB °ü·Ã Áú¹®ÀÌ ÀÖ½À´Ï´Ù.','Á¶ÀÎ°ú ¼­ºê Äõ¸®´Â ¾î¶² °æ¿ì¿¡ »ç¿ëÇÏ³ª¿ä?','2020-11-27',5);
+VALUES(boards_seq.NEXTVAL,10003,'DB ê´€ë ¨ ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤.','ì¡°ì¸ê³¼ ì„œë¸Œ ì¿¼ë¦¬ëŠ” ì–´ë–¤ ê²½ìš°ì— ì‚¬ìš©í•˜ë‚˜ìš”?','2020-11-27',5);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10004,'CSS°¡ ¾î·Á¿ö¿ä','ÅØ½ºÆ®¸¦ »óÇÏ °¡¿îµ¥ Á¤·ÄÀ» ÇÏ°í ½ÍÀºµ¥ ¾î¶»°Ô ÇÏ³ª¿ä?','2020-12-05',6);
+VALUES(boards_seq.NEXTVAL,10004,'CSSê°€ ì–´ë ¤ì›Œìš”','í…ìŠ¤íŠ¸ë¥¼ ìƒí•˜ ê°€ìš´ë° ì •ë ¬ì„ í•˜ê³  ì‹¶ì€ë° ì–´ë–»ê²Œ í•˜ë‚˜ìš”?','2020-12-05',6);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10006,'ÀÚ¹Ù ½ºÅ©¸³Æ® Áú¹®ÀÌ¿ä','selectQuery¿Í getElementByIdÀÇ Â÷ÀÌ¿Í ¾î¶² °æ¿ì¿¡ »ç¿ëÇÏ´Â Áö ±Ã±ÝÇÕ´Ï´Ù.','2020-12-13',4);
+VALUES(boards_seq.NEXTVAL,10006,'ìžë°” ìŠ¤í¬ë¦½íŠ¸ ì§ˆë¬¸ì´ìš”','selectQueryì™€ getElementByIdì˜ ì°¨ì´ì™€ ì–´ë–¤ ê²½ìš°ì— ì‚¬ìš©í•˜ëŠ” ì§€ ê¶ê¸ˆí•©ë‹ˆë‹¤.','2020-12-13',4);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10002,'Áú¹®ÀÌ ÀÖ½À´Ï´Ù.','URL°ú URIÀÇ Â÷ÀÌ´Â ¹«¾ùÀÎ°¡¿ä?','2021-01-07',7);
+VALUES(boards_seq.NEXTVAL,10002,'ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤.','URLê³¼ URIì˜ ì°¨ì´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?','2021-01-07',7);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10005,'JSP¿¡¼­ ÆäÀÌÁö ÀÌµ¿¿¡ °ü·ÃÇØ¼­ Áú¹®ÀÌ ÀÖ½À´Ï´Ù.','Æ÷¿öµå¿Í ¸®´ÙÀÌ·ºÆ®ÀÇ Â÷ÀÌ¿Í ¾î¶² °æ¿ì¿¡ »ç¿ëµÇ´ÂÁö ¾Ë·ÁÁÖ¼¼¿ä.','2021-01-18',3);
+VALUES(boards_seq.NEXTVAL,10005,'JSPì—ì„œ íŽ˜ì´ì§€ ì´ë™ì— ê´€ë ¨í•´ì„œ ì§ˆë¬¸ì´ ìžˆìŠµë‹ˆë‹¤.','í¬ì›Œë“œì™€ ë¦¬ë‹¤ì´ë ‰íŠ¸ì˜ ì°¨ì´ì™€ ì–´ë–¤ ê²½ìš°ì— ì‚¬ìš©ë˜ëŠ”ì§€ ì•Œë ¤ì£¼ì„¸ìš”.','2021-01-18',3);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10006,'DOM¿¡ °ü·ÃÇØ¼­ Áú¹®ÀÌ ÀÖ¾î¿ä','»õ·Î ¸¸µç ³ëµå¸¦ È­¸é¿¡ ¸¸µé°í ½ÍÀºµ¥ ¾î¶»°Ô ³¢¿ö ³Ö¾î¾ß ÇÏ³ª¿ä?','2021-02-20',4);
+VALUES(boards_seq.NEXTVAL,10006,'DOMì— ê´€ë ¨í•´ì„œ ì§ˆë¬¸ì´ ìžˆì–´ìš”','ìƒˆë¡œ ë§Œë“  ë…¸ë“œë¥¼ í™”ë©´ì— ë§Œë“¤ê³  ì‹¶ì€ë° ì–´ë–»ê²Œ ë¼ì›Œ ë„£ì–´ì•¼ í•˜ë‚˜ìš”?','2021-02-20',4);
 INSERT INTO boards
-VALUES(boards_seq.NEXTVAL,10007,'½ºÇÁ¸µ ¾î·Á¿ö¿ä','Á¦¾îÀÇ ¿ªÀüÀÌ ¹«¾ùÀÌ°í ¾î¶»°Ô »ç¿ëÇÏ´Â °Ç°¡¿ä?','2021-03-02',5);
+VALUES(boards_seq.NEXTVAL,10007,'ìŠ¤í”„ë§ ì–´ë ¤ì›Œìš”','ì œì–´ì˜ ì—­ì „ì´ ë¬´ì—‡ì´ê³  ì–´ë–»ê²Œ ì‚¬ìš©í•˜ëŠ” ê±´ê°€ìš”?','2020-03-02',5);
 
 
-/* commentsÅ×ÀÌºí »ý¼º */
+
+/* commentsí…Œì´ë¸” ìƒì„± */
 CREATE TABLE comments(
 commentNum NUMBER(6) PRIMARY KEY,
 qnaBoardNum NUMBER(6) NOT NULL,
@@ -84,26 +86,27 @@ commentContent VARCHAR2(4000),
 commentRegdate DATE DEFAULT SYSDATE,
 CONSTRAINT FK_COMMENTS FOREIGN KEY(qnaBoardNum)
 REFERENCES boards(qnaBoardNum)
+on delete cascade
 );
 
 
-
-/* comments½ÃÄö½º */
+/* commentsì‹œí€€ìŠ¤ */
 CREATE SEQUENCE comments_seq
 START WITH 1
 NOCACHE;
 
-/* comments»ùÇÃ µ¥ÀÌÅÍ */
+/* commentsìƒ˜í”Œ ë°ì´í„° */
 INSERT INTO comments
-VALUES(comments_seq.NEXTVAL,101,'ÇÁ·ÎÅäÄÝ¿¡´Â HTTP,HTTPSµîÀÌ ÀÖ½À´Ï´Ù.','2020-09-16');
+VALUES(comments_seq.NEXTVAL,101,'í”„ë¡œí† ì½œì—ëŠ” HTTP,HTTPSë“±ì´ ìžˆìŠµë‹ˆë‹¤.','2020-09-16');
 INSERT INTO comments
-VALUES(comments_seq.NEXTVAL,102,'ºü¸¥ µ¥ÀÌÅÍ °Ë»öÀ» À§ÇØ¼­ ÇÊ¿äÇÕ´Ï´Ù.','2020-10-14');
+VALUES(comments_seq.NEXTVAL,102,'ë¹ ë¥¸ ë°ì´í„° ê²€ìƒ‰ì„ ìœ„í•´ì„œ í•„ìš”í•©ë‹ˆë‹¤.','2020-10-14');
 INSERT INTO comments
-VALUES(comments_seq.NEXTVAL,105,'meta ÅÂ±×´Â È­¸é¿¡ ³ëÃâµÇÁö ¾Ê´Â ¹®¼­ÀÇ ±âº»Á¤º¸¸¦ ÀÛ¼ºÇÕ´Ï´Ù.','2020-11-17');
+VALUES(comments_seq.NEXTVAL,105,'meta íƒœê·¸ëŠ” í™”ë©´ì— ë…¸ì¶œë˜ì§€ ì•ŠëŠ” ë¬¸ì„œì˜ ê¸°ë³¸ì •ë³´ë¥¼ ìž‘ì„±í•©ë‹ˆë‹¤.','2020-11-17');
 INSERT INTO comments
-VALUES(comments_seq.NEXTVAL,104,'web.xmlÀ» ÀÌ¿ëÇÕ´Ï´Ù.','2020-11-17');
+VALUES(comments_seq.NEXTVAL,104,'web.xmlì„ ì´ìš©í•©ë‹ˆë‹¤.','2020-11-17');
 INSERT INTO comments
-VALUES(comments_seq.NEXTVAL,103,'½ºÇÁ¸µ ¼³Á¤À» º¸´Ù °£¼ÒÈ­ ÇÑ °ÍÀÌ ½ºÇÁ¸µ ºÎÆ®ÀÔ´Ï´Ù.','2020-11-17');
+VALUES(comments_seq.NEXTVAL,103,'ìŠ¤í”„ë§ ì„¤ì •ì„ ë³´ë‹¤ ê°„ì†Œí™” í•œ ê²ƒì´ ìŠ¤í”„ë§ ë¶€íŠ¸ìž…ë‹ˆë‹¤.','2020-11-17');
+
 
 
 DROP TABLE boards;

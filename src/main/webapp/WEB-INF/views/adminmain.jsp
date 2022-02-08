@@ -19,7 +19,7 @@
 		<a href="<c:url value='/adminmain/admin/memberlist' />"><strong>회원관리</strong></a>
 	</div>
 	<div class="second">
-		<a href="<c:url value='/member/ReadMember/${authInfo.memberName}' />"><strong>게시물 관리</strong></a>
+		<a href="<c:url value='/adminmain/admin/adminBoard' />"><strong>게시물 관리</strong></a>
 	</div>
 
 

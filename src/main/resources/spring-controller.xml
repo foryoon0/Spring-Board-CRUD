@@ -29,12 +29,18 @@
 
 	<bean id="readController" class="spring.controller.ReadController" >
 		<property name="dao" ref="dao" />
+		<property name="commentDao" ref="commentDao" />
 	</bean>
+	
 	
 	<bean id="logoutController" class="spring.controller.LogoutController" />
 	
 	<bean id="deletePostController" class="spring.controller.DeletePostController">
 		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean id="deleteMemberController" class="spring.controller.DeleteMemberController">
+		<property name="memberDao" ref="memberDao" />
 	</bean>
 	
 	<bean id="readMemberController" class="spring.controller.ReadMemberController">
@@ -45,7 +51,29 @@
 		<property name="memberDao" ref="memberDao"/>
 	</bean>
 	
+	<bean id="adminReadBoardController" class="spring.controller.AdminReadBoardController">
+		<property name="dao" ref="dao"/>
+		<property name="commentDao" ref="commentDao" />
+	</bean>
+	
+	<bean id="adminDetailBoardController" class="spring.controller.AdminDetailBoardController">
+		<property name="dao" ref="dao"/>
+		<property name="commentDao" ref="commentDao" />
+	</bean>
+	
 	<bean id="updateController" class="spring.controller.UpdateController">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean id="deleteCommentController" class="spring.controller.DeleteCommentController">
+		<property name="commentDao" ref="commentDao" />
+	</bean>
+	
+	<bean id="updateCommentController" class="spring.controller.UpdateCommentController">
+		<property name="commentDao" ref="commentDao" />
+	</bean>
+	
+	<bean id="adminDeleteCommentController" class="spring.controller.AdminDeleteCommentController">
 		<property name="dao" ref="dao" />
 	</bean>
 	

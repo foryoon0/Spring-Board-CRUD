@@ -13,6 +13,12 @@ public class Member {
 	
 	
 	
+	
+	
+	public Member(int memberNum) {
+		this.memberNum = memberNum;
+	}
+
 	public Member(String memberId, String memberName, String memberEmail, String memberPhone, int memberNum) {
 
 		this.memberNum = memberNum;

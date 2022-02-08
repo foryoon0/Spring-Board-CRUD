@@ -31,7 +31,7 @@ public class UpdateMemberUpdate {
 	{
 		
 		
-		Member member = new Member(memberNum,memberId,memberName,memberEmail,memberPhone);
+		Member member = new Member(memberId,memberName,memberEmail,memberPhone,memberNum);
 		
 		memberDao.edit(member);
 	

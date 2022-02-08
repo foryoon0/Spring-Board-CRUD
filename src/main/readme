@@ -1,0 +1,4 @@
+<Context docBase="Spring_Test" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Spring_Test"/>
+
+
+path를 "/"로 수정

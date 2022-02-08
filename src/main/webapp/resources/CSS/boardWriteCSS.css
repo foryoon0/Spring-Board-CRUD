@@ -50,7 +50,9 @@ textarea {
     margin: 0px;
   }
 
-
+.focused-input{
+	height: 50%;
+}
 
 
 a:link { color: black; text-decoration: none;}

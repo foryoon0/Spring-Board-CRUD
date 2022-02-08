@@ -16,7 +16,10 @@ public class BoardDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	
+	public BoardDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 
 	private RowMapper<Board> mapper = new RowMapper<Board>() {// �͸� ���� ��ü
 
@@ -29,10 +32,7 @@ public class BoardDao {
 
 	};
 
-	public BoardDao(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
+	
 	public List<Board> selectAll() {
 		String sql = "SELECT b.*,m.* FROM boards b left outer join members m on b.memberNum = m.memberNum ORDER BY QNABOARDNUM DESC ";
 

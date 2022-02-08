@@ -29,10 +29,11 @@
 					<td>${member.memberNum}</td>
 					<td>${member.memberId}</td>
 					<td>${member.memberName}</td>
-				
-					<td><input type="button" value="수정" onclick="location.href='/admin/editadmin/${member.memberName}'"></td>
+					<td>
+					<input type="hidden" value="${member.memberNum}">
+					<input type="button" value="수정" onclick="location.href='/admin/editadmin/${member.memberNum}'"></td>
 				<c:if test="${member.memberName != authInfo.memberName}">
-					<td><input type="button" value="삭제"></td>
+					<td><input type="button" value="삭제" onclick="location.href='/admin/deleteMember/${member.memberNum}'"></td>
 				</c:if>
 				<c:if test="${member.memberName == authInfo.memberName}">
 					<td><input type="hidden" value="memberNum"></td>
@@ -40,6 +41,10 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<br>
+		
+			<a href="<c:url value='/adminmain' />">[첫 화면으로]</a>
+	
 		
 </section>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>

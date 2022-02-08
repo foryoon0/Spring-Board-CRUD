@@ -126,8 +126,8 @@ private JdbcTemplate jdbcTemplate;
 				return list;
 	
 			}
-////////////////////////////////////////////////////////////////////////
-/// 게시글 수정 메소드 edit
+	////////////////////////////////////////////////////////////////////////
+	/// 게시글 수정 메소드 edit
 
 		public void edit(Member member) {
 		
@@ -154,4 +154,41 @@ private JdbcTemplate jdbcTemplate;
 		System.out.println("멤버 데이트갯수 :" + cnt);
 		}
 		
+	///////////////////////////////////////////////////////////
+	//selectByNum
+		public Member selectByNum(int memberNum) {
+		
+		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberNum=?", new RowMapper<Member>() {
+		@Override
+		public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Member member = new Member(
+					rs.getInt("memberNum"),
+					rs.getString("memberId"),
+					rs.getString("memberPassword"),
+					rs.getString("memberName"),
+					rs.getString("memberEmail"),
+					rs.getString("memberPhone")); 
+				member.setMemberNum(rs.getInt("memberNum"));
+		return member;
+		}} ,memberNum);
+		
+		return list.isEmpty()?null:list.get(0);
+		
+		}	
+		
+	//////////////////////////////////////////////////////////////////////////////////
+	//deleteMemberBymemberNum memberNum값을 이용하여  회원삭제
+		
+		public void deleteMemberBymemberNum(int memberNum) {
+			System.out.println("삭제값: " + memberNum);
+			
+			String sql = "DELETE FROM members WHERE memberNum = ?";
+				
+				jdbcTemplate.update(sql,memberNum);
+				
+				
+				System.out.println("삭제완료");
+				
+			}
+
 	}
