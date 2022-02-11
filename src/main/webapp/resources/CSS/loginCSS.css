@@ -40,6 +40,38 @@ th,td{
 
 }
 
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 13px;
+    position: relative;
+    top: 50%;
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: default;
+    padding: 10px;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+
+.b_butoon {
+    color: #000000;
+    border: #000000 solid 1px;
+    padding: 10px;
+    background-color: #FFD9D9;
+    margin:5px;
+}
+
+ .b_butoon:hover {
+        color: #ffffff;
+        background-color: #000000;
+    }
+
 
 
 a:link { color: black; text-decoration: none;}

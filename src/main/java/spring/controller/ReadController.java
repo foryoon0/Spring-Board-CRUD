@@ -30,9 +30,9 @@ public class ReadController {
 	@RequestMapping("/ReadBoard/{qnaBoardNum}")
 	public String ReadBoard(@PathVariable("qnaBoardNum") int qnaBoardNum, Model model) {
 		
+		dao.updateCount(qnaBoardNum);
 		Board board = dao.selectByqnaBoardNum(qnaBoardNum);
 		Comment comment = commentDao.selectByqnaBoardNum(qnaBoardNum);
-		
 		
 		if(board==null) {
 			throw new MemberNotFoundException();
@@ -43,5 +43,7 @@ public class ReadController {
 		
 		return "board/ReadBoard";
 	}
+	
+	
 }
 

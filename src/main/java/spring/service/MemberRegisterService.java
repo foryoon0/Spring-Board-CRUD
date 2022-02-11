@@ -18,10 +18,10 @@ private MemberDao memberDao; //= new MemberDao();  //사용할 객체 직접 생
 	
 	public void regist(RegisterRequest req) {
 		// 이미 가입된 계정이 있는가?
-		Member member = memberDao.selectByEmail(req.getMemberEmail());
+		Member member = memberDao.selectById1(req.getMemberId());
 		
 		if(member !=null) {
-			throw new AlreadyExistingMemberException("이메일 중복 : "+req.getMemberEmail());
+			throw new AlreadyExistingMemberException("이메일 중복 : "+req.getMemberId());
 		}
 		// 가입된 계정이 없다면 Member객체로 옮겨 담아서 
 		Member newMember = new Member(req.getMemberId(),req.getMemberPassword(),req.getMemberName(),req.getMemberEmail(),req.getMemberPhone());

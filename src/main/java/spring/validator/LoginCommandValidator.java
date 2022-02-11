@@ -15,11 +15,11 @@ public class LoginCommandValidator implements Validator{
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		// 이메일은 입력을 했는지?
+		// 아이디를 입력을 했는지?
 		// 암호는 입력을 했는지?
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memberId", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memberPassword", "required");
 		
 	}
 

@@ -38,21 +38,22 @@ public class RegisterRequestValidator implements Validator{
 		RegisterRequest regReq = (RegisterRequest)target;
 		
 		if(regReq.getMemberId()==null || regReq.getMemberId().trim().isEmpty()) {
-			errors.rejectValue("email", "required"); // => JSP에 에러 출력 태그에 email이라는 속성에 required값을 전달한다.
+			errors.rejectValue("memberId", "required"); // => JSP에 에러 출력 태그에 email이라는 속성에 required값을 전달한다.
 		}else {
-			Matcher matcher = pattern.matcher(regReq.getMemberId());
+			Matcher matcher = pattern.matcher(regReq.getMemberEmail());
 			if(!matcher.matches()) { //matches() 일치한다면 true, 일치하지 않는다면 false
-				errors.rejectValue("email", "bad"); 
+				errors.rejectValue("memberEmail", "bad"); 
 			}
 		}
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmpty(errors, "password", "required");
-		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memberName", "required");
+		ValidationUtils.rejectIfEmpty(errors, "memberId", "required");
+		ValidationUtils.rejectIfEmpty(errors, "memberPassword", "required");
+		ValidationUtils.rejectIfEmpty(errors, "rePassword", "required");
 		
-		if(!regReq.getPassword().isEmpty()) {
+		if(!regReq.getMemberPassword().isEmpty()) {
 			if(!regReq.isPasswordEqualToConfirmPassword()) {
-				errors.rejectValue("confirmPassword", "nomatch");
+				errors.rejectValue("rePassword", "nomatch");
 			}
 		}
 		

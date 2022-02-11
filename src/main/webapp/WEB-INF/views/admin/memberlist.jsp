@@ -31,9 +31,9 @@
 					<td>${member.memberName}</td>
 					<td>
 					<input type="hidden" value="${member.memberNum}">
-					<input type="button" value="수정" onclick="location.href='/admin/editadmin/${member.memberNum}'"></td>
+					<input type="button" value="수정" class="button_base b_butoon first" onclick="location.href='/admin/editadmin/${member.memberNum}'"></td>
 				<c:if test="${member.memberName != authInfo.memberName}">
-					<td><input type="button" value="삭제" onclick="location.href='/admin/deleteMember/${member.memberNum}'"></td>
+					<td><input type="button" value="삭제" class="button_base b1_butoon first" onclick="location.href='/admin/deleteMember/${member.memberNum}'"></td>
 				</c:if>
 				<c:if test="${member.memberName == authInfo.memberName}">
 					<td><input type="hidden" value="memberNum"></td>

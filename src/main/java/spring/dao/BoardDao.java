@@ -166,4 +166,52 @@ public class BoardDao {
 	}
 	
 	
+	
+	//페이징 처리
+	public int selectAllNumBoard() {
+		
+		String sql = "SELECT b.*,m.* FROM boards b left outer join members m on b.memberNum = m.memberNum";
+		
+		List<Board> cntAll = jdbcTemplate.query(sql, mapper);
+		System.out.println("selectAllnum"+cntAll.size());
+		return cntAll.size();
+	}
+	
+	// 현재 페이지 정보(섹션번호, 페이지 번호) 현재 페이지 글목록읽어오기
+	
+	public List<Board> selectTargetBoard(int section, int pageNum){
+	
+		String sql = " SELECT * FROM "
+				+ " (SELECT ROWNUM AS nick, QNABOARDTITLE, MEMBERNAME, QNABOARDREGDATE, QNABOARDCOUNT, QNABOARDNUM "  
+				+ " FROM (SELECT b.QNABOARDTITLE, m.MEMBERNAME, b.QNABOARDREGDATE, b.QNABOARDCOUNT, b.QNABOARDNUM FROM BOARDS b JOIN MEMBERS m ON (b.MEMBERNUM = m.MEMBERNUM) ORDER BY b.QNABOARDNUM DESC)) "
+				+ " WHERE nick BETWEEN (?-1)*50+(?-1)*5+1 AND (?-1)*50+(?)*5";
+		
+		List<Board> list = jdbcTemplate.query(sql, mapper, section, pageNum, section, pageNum);
+		for(Board b : list) {
+			System.out.println(b.getMemberName());
+		}
+		return list;
+	}
+
+	////////////////////////////////////////////////
+	///카운트 증가 메서드
+		public void updateCount(int qnaBoardNum) {
+		
+		int cnt = jdbcTemplate.update(new PreparedStatementCreator() {
+		
+		
+		@Override
+		public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+		PreparedStatement psmt = con.prepareStatement(
+		"UPDATE boards SET qnaBoardCount = NVL(TO_NUMBER(qnaBoardCount),0)+1 WHERE QNABOARDNUM = ?");
+		
+			psmt.setInt(1,qnaBoardNum);
+		
+			return psmt;
+			}
+			});
+		System.out.println("조회수 증가");
+		}
+
+	
 }

@@ -53,15 +53,14 @@
 	<c:if test="${board.memberName == authInfo.memberName}">
 		<input type="button"  id="updatebtn" name="updatebtn" value="수정" class="btn" onclick="updateMember()">
 		<input type="hidden" id="updateToController" name="updateToController" value="수정완료" class="btn">
-		<input type="button" value="삭제" onclick="location.href='/board/deletePost/${qnaBoardNum}'" class="btn">
+		<input type="button" value="삭제" onclick="deleteConfirm()" class="btn">
+		<input type="button" value="목록으로" onclick="location.href='/'" class="btn">
+	</c:if>
+	<c:if test="${board.memberName != authInfo.memberName}">
 		<input type="button" value="목록으로" onclick="location.href='/'" class="btn">
 	</c:if>
 	</form>
-	
-		<br>
-		<br>
-		
-	
+			
 		<table class="comment">
 			<tr>
 				<th> 답변 </th>
@@ -83,7 +82,18 @@
 		$('#updatebtn').attr('type','hidden');
 		$('#updateToController').attr('type','submit');
 	}
+	
+	function deleteConfirm(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/board/deletePost/${qnaBoardNum}';
+		}
+	}
+
 </script>
+
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>
 </html>

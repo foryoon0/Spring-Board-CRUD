@@ -11,10 +11,18 @@ public class Member {
 	private String memberEmail;
 	private String memberPhone;
 	
-	
-	
-	
-	
+
+	public Member(String memberId) {
+			this.memberId = memberId;
+	}
+
+	public Member(String memberId, String memberPassword, String memberName, int memberNum, String memberEmail) {
+		this.memberId = memberId;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+	}
+
 	public Member(int memberNum) {
 		this.memberNum = memberNum;
 	}
@@ -75,6 +83,8 @@ public class Member {
 		this.memberId = memberId;
 		this.memberName = memberName;
 	}
+
+
 
 	public int getMemberNum() {
 		return memberNum;

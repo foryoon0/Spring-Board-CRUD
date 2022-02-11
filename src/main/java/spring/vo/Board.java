@@ -13,8 +13,16 @@ public class Board {
 	private int qnaBoardCount;
 	private String memberName;
 	
-
+	public Board() {}
 	
+
+	public Board(String qnaBoardTitle,String memberName, Date qnaBoardRegdate, int qnaBoardCount, int qnaBoardNum) {
+		this.qnaBoardNum = qnaBoardNum;
+		this.qnaBoardTitle = qnaBoardTitle;
+		this.memberName = memberName;
+		this.qnaBoardRegdate = qnaBoardRegdate;
+		this.qnaBoardCount = qnaBoardCount;
+	}
 	
 
 	public Board(String qnaBoardTitle, String qnaBoardContent, int qnaBoardNum) {

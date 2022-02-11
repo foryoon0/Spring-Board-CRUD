@@ -23,8 +23,9 @@
 				<td><form:password path="memberPassword"/>
 				<form:errors path="memberPassword" htmlEscape="false"/></td>
 		</table>
-		<input type="submit" value="로그인" class=btn>
-		<input type="button" value="회원가입" class=btn onclick="location.href='/member/join '">
+
+		<input type="submit" value="로그인" class="button_base b_butoon first"> 
+		<input type="button" value="회원가입" class="button_base b_butoon first" onclick="location.href='/member/join '">
 	</form:form>
 
 </section>

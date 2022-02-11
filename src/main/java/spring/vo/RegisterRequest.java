@@ -11,15 +11,10 @@ public class RegisterRequest {
 	
 	
 
-	public RegisterRequest(String memberId, String memberPassword, String memberName, String memberEmail,
-			String memberPhone) {
-		
-		this.memberId = memberId;
-		this.memberPassword = memberPassword;
-		this.memberName = memberName;
-		this.memberEmail = memberEmail;
-		this.memberPhone = memberPhone;
+	public RegisterRequest() {
+		// TODO Auto-generated constructor stub
 	}
+
 
 	public boolean isPasswordEqualToConfirmPassword() {
 		return memberPassword.equals(rePassword);

@@ -22,21 +22,17 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	
-	//�̸��� ����
-	public Member selectByEmail(String email) {
+	// 이메일을 통해 조회한 후 중복된 아이디값 찾기
+	public Member selectById1(String memberId) {
 
-		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberEmail=?", new RowMapper<Member>() {
+		List<Member> list= jdbcTemplate.query("SELECT * FROM members WHERE memberId=?", new RowMapper<Member>() {
 
 			@Override
 			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Member member = new Member(
-								rs.getString("memberEmail"),
-								rs.getString("memberPassword"),
-								rs.getString("memberName"));
-		
-	
+								rs.getString("memberId"));
 					return member;
-			}} ,email);
+			}} ,memberId);
 
 		return list.isEmpty()?null:list.get(0);
 	}

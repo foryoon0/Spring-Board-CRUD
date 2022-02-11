@@ -59,6 +59,18 @@
 		$('#updatebtn').attr('type','hidden');
 		$('#updateToController').attr('type','submit');
 	}
+	
+	
+function deleteConfirm(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/board/deletePost/${qnaBoardNum}';
+		}
+	}
+	
+	
 </script>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>

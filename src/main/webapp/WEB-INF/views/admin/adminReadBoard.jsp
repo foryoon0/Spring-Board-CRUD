@@ -41,7 +41,7 @@
 	</table>
 	
 		<input type="hidden" name="qnaBoardNum" id="qnaBoardNum" value="${board.qnaBoardNum}">
-		<input type="button" value="게시글삭제" onclick="location.href='/admin/adminDeletePost/${qnaBoardNum}'" class="btn">
+		<input type="button" value="게시글삭제" onclick="deleteConfirmPost()" class="btn">
 		<input type="button" value="목록으로" onclick="location.href='/adminmain/admin/adminBoard'" class="btn">
 	</form>
 		
@@ -60,7 +60,7 @@
 		</table>
 			<input type="button" value="답글작성하기" id="mentbtn" name="mentbtn" onclick="updateComment()" class="btn">
 			<input type="hidden" value="작성완료" id="submitment" name="submitment" value="submitmentment" onclick="location.href='/updateComment/${qnaBoardNum}'" class="btn">
-			<input type="button" value="답글삭제" onclick="location.href='/admin/adminDeleteComment/${qnaBoardNum}'" class="btn">
+			<input type="button" value="답글삭제" onclick="deleteConfirmComment()" class="btn">
 		
 		</form>
 </section>
@@ -72,6 +72,30 @@
 		$('#mentbtn').attr('type','hidden');
 		$('#submitment').attr('type','submit');
 	}
+	
+	
+	function deleteConfirmPost(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/admin/adminDeletePost/${qnaBoardNum}';
+		}
+	}
+	
+	
+
+	function deleteConfirmComment(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/admin/adminDeleteComment/${qnaBoardNum}';
+		}
+	}
+	
+	
+	
 </script>
 <footer><h2 class="main">Copyright(c)2022 그린 아카데미 All right Reseved</h2></footer>
 </body>

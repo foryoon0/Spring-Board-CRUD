@@ -26,7 +26,7 @@
 				
 				<tr>
 					<th>제목</th>
-					<td><textarea rows="1" cols="10" name="qnaBoardTitle" id="qnaBoardTitle" class="focused-input" required></textarea></td>
+					<td><textarea rows="2" cols="10" name="qnaBoardTitle" id="qnaBoardTitle" class="focused-input" required></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><textarea rows="5" cols="30"
